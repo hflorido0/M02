@@ -1,92 +1,154 @@
-# M02-TEORIA
+# <span style="color:#009688">M02 UF2</span>
 
+## <span style="color:#4dd0e1">LENGUAJE SQL</span>
 
+Las sentencias de bases de datos se pueden agrupar en:
 
-## Getting started
+- [ ] <span style="color:#009688">DDL</span> (<span style="color:#4dd0e1">Data Definition Language</span>): Definición de la estructura de almacenamiento de datos. Create, drop, alter…
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- [ ] <span style="color:#009688">DML</span> (<span style="color:#4dd0e1">Data Manipulation Language</span>): Consulta y modificación de datos. Select, Insert, update, delete…
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- [ ] <span style="color:#009688">DCL</span> (<span style="color:#4dd0e1">Data Control Language</span>): administra el acceso a los datos. Grant, revoke…
 
-## Add your files
+### Ordenes <span style="color:#009688">DDL</span> sobre base de datos
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Para crear una base de datos se realiza con la orden ``CREATE DATABASE`` aunque ``CREATE SCHEMA`` es sinónima, es decir que hará lo mismo
+    
+    CREATE DATABASE NOMBRE_SCHEMA
 
+Con la orden ``DROP [DATABASE | SCHEMA]`` borramos una base de datos
+
+	DROP DATABASE NOMBRE_SCHEMA
+
+### Sintaxis de <span style="color:#009688">CREATE TABLE</span> (crear tabla)
+
+    CREATE TABLE nombre_tabla (
+        nombre_columna tipocolumna [restricciones_columna],
+        [nombre_columna tipocolumna [restricciones_columna], ]
+        [restricciones_tabla]
+    );
+
+Donde las <span style="color:#4dd0e1">restricciones_columna</span> pueden ser:
+- <span style="color:#009688">PRIMARY KEY</span> 🡪 Especifica que esta columna es clave primaria.
+NOTA: Una clave primaria puede contener hasta 16 columnas.
+  - No puede haber más de una clave primaria por tabla.
+  - Las columnas que la definen deben ser NOT NULL. (Se hace por defecto).
+- <span style="color:#009688">FOREING KEY</span> 🡪 Permite establecer una clave en esta tabla con la clave primaria de otra.
+- <span style="color:#009688">NOT NULL</span> 🡪 Especifica que la columna debe recibir un valor en la creación o la modificación. La propiedad not null no se admite en el ALTER TABLE.
+- <span style="color:#009688">NULL</span> 🡪 Especifica que la columna puede tomar valores null.
+- <span style="color:#009688">DEFAULT</span> 🡪 Fuerza un valor para este campo si no existe.
+- <span style="color:#009688">AUTO_INCREMENT</span> 🡪 Propiedad aplicada únicamente a columna numérica entera y permite que el sistema genera automáticamente los números de manera incremental.
+- <span style="color:#009688">UNIQUE</span> 🡪 Permite asignar un valor único a un campo, por lo que todos los valores son diferentes en esa columna. Puede haber varias por tabla.
+- <span style="color:#009688">CHECK</span> 🡪 Especifica una comprobación en el valor de esta columna. 
+
+### Ejemplo
+```roomsql
+    CREATE TABLE PROFESOR (
+        ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        NOMBRE VARCHAR(100) NOT NULL,
+        APELLIDO VARCHAR(100) NULL,
+        EDAD DATE NOT NULL,
+        PROVINCIA VARCHAR(100) DEFAULT 'Barcelona',
+        SUELDO INT CHECK(> 5000),
+        ASIGNATURA VARCHAR(100) UNIQUE,
+    ) AUTO_INCREMENT = 1000;
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/stucomDAM/dam1t/m02/m02-teoria.git
-git branch -M main
-git push -uf origin main
+* Si no especifico el <span style="color:#6aa84f">AUTO_INCREMENT</span> empieza en 1.
+* Un único <span style="color:#6aa84f">AUTO_INCREMENT</span> por tabla y siempre en la <span style="color:#4dd0e1">Primary Key</span>.
+
+### Ejemplo
+```roomsql
+    create table usuario(
+        numero int auto_increment,
+        documento char(8),
+        nombre varchar(30),
+        estudios enum('ninguno','primario','secundario','universitario'),
+        primary key (numero)
+    )
+```
+* Forma exclusiva de MySql para crear la <span style="color:#4dd0e1">Primary Key</span>.
+
+
+### <span style="color:#6aa84f">CONSTRAINTS</span>
+
+    CREATE TABLE nombre_tabla (
+        nombre_columna tipocolumna [restricciones_columna],
+        [nombre_columna tipocolumna [restricciones_columna], ]
+        [restricciones_tabla]
+    );
+
+Podemos, del mismo modo, crear restricciones <span style="color:#6aa84f">(CONSTRAINTS)</span> al final de la especificación de tablas (<span style="color:#4dd0e1">restricciones_tabla</span>) con los comandos:
+- <span style="color:#6aa84f">CONSTRAINT</span> nombrerestriccion <span style="color:#009688">DEFAULT</span> valor FOR nombrecolumna
+- <span style="color:#6aa84f">CONSTRAINT</span> nombrerestriccion <span style="color:#009688">PRIMARY KEY</span> (nombrecolumna1,....)
+  - NOTA: Es la única manera de hacer una clave primaria compuesta.
+- <span style="color:#6aa84f">CONSTRAINT</span> nombrerestriccion <span style="color:#009688">UNIQUE</span> (nombrecolumna1, ...)
+- <span style="color:#6aa84f">CONSTRAINT</span> FK_ nombrerest <span style="color:#009688">FOREIGN KEY</span> (nombrecol) <span style="color:#009688">REFERENCES</span> NombreTabla (columnaId)
+  - NOTA: Es la única manera de hacer una clave foranea.
+
+### Ejemplo
+
+```roomsql
+    CREATE TABLE PROFESOR (
+        ID INT NOT NULL AUTO_INCREMENT,
+        NOMBRE VARCHAR(100),
+        APELLIDO VARCHAR(100),
+        EDAD DATE,
+        PROVINCIA VARCHAR(100),
+        SUELDO INT,
+        ID_ASIGNATURA VARCHAR(100),
+        CONSTRAINT PK_PROFESOR PRIMARY KEY (ID),
+        CONSTRAINT UNIQUE_PROFESOR_ASIGNATURA UNIQUE (NOMBRE),
+        CONSTRAINT PROVINCIA_DEFAULT DEFAULT 'Barcelona' FOR PROVINCIA,
+        CONSTRAINT FK_PROFESOR_ASIGNATURA FOREIGN KEY (ID_ASIGNATURA) REFERENCES ASINTATURAS (ID)
+    );
 ```
 
-## Integrate with your tools
+## <span style="color:#009688">Actividad 1</span>
+Dadas las tablas, <span style="color:#4dd0e1">CLIENTES</span> y <span style="color:#4dd0e1">FACTURAS</span>, crea un script para cada una de ellas:
 
-- [ ] [Set up project integrations](https://gitlab.com/stucomDAM/dam1t/m02/m02-teoria/-/settings/integrations)
+    CLIENTES
+    CIF (PK)
+    Nombre (no nulo)
+    Direccion
+    Poblacion (default ‘Barcelona’)
+    Web
+    Correo
+---
 
-## Collaborate with your team
+    FACTURAS
+    Idfactura (PK - autoincremental empieza en 100 y no nula)
+    Fechafactura
+    Total (número con dos decimales)
+    Iva (check de mínimo 21)
+    Descuento (Permite nulos)
+    CIF (FK CLIENTE)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+<details>
+<summary><span style="color:#6aa84f;font-size:150%">Solución</span></summary>
 
-## Test and Deploy
+```roomsql
+    CREATE TABLE CLIENTES (
+        CIF char(9) primary key auto_increment,
+        nombre varchar(30) not null,
+        direccion varchar(100),
+        poblacion varchar(100) default 'Barcelona',
+        web varchar(60),
+        correo varchar(40)
+    );
+    
+    CREATE TABLE facturas (
+        Idfactura int auto_increment primary key not null,
+        Fechafactura date,
+        total decimal(10,2),
+        iva decimal(10,2),
+        descuento decimal(10,2) check(>20) null,
+        CIF char(9) ,
+        constraint fk_clientes_facturas foreign key(CIF) references clientes(CIF)
+    ) auto_increment = 100;
+```
+</details>
 
-Use the built-in continuous integration in GitLab.
+## <span style="color:#009688">Actividad 2</span>
+Ahora ejecuta el script en la base de datos.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+---
