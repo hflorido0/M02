@@ -19,7 +19,7 @@
 
 <!--Navbar -->
 <nav id="myHeader" class="fixed-top mb-1 navbar navbar-expand-lg navbar-dark green lighten-1">
-    <a class="navbar-brand" onClick="logginForm()")>PLANTILLA Intranet</a>
+    <a class="navbar-brand">PLANTILLA Intranet</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
             aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,13 +36,13 @@
                 </div>
             </li>
         </ul>
-        <i class="fas fa-bell fa-2x" aria-hidden="true" style="color:white;cursor:pointer" onClick="showModalNotificaciones()" title="Notificacions"></i><span class="counter counter-lg"></span>&nbsp;&nbsp;
-        <i class="fas fa-home fa-2x" aria-hidden="true" style="color:white;cursor:pointer" onClick="logginFormMain()"></i>&nbsp;&nbsp;
+        <i class="fas fa-bell fa-2x" aria-hidden="true" style="color:white;cursor:pointer" title="Notificacions"></i><span class="counter counter-lg"></span>&nbsp;&nbsp;
+        <i class="fas fa-home fa-2x" aria-hidden="true" style="color:white;cursor:pointer"></i>&nbsp;&nbsp;
         <a href="/"><i class="fas fa-user-circle fa-2x" aria-hidden="true" style="color:white"></i></a>
     </div>
 </nav>
 
-<button onclick="topFunction()" title="Go to top">
+<button title="Go to top">
     <i class="fas fa-arrow-up fa-2x" style="color:white" aria-hidden="true"></i></button>
 <!-- SAVING BUTTON -->
 <button class="btn btn-info" type="button" id="saveButtonSpinner" hidden>
@@ -89,7 +89,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" id="myModalEsborratAcceptar" data-dismiss="modal">Acceptar</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal" onClick="noBorrar()">Cancelar</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@
     </div>
 </div>
 
-<button onclick="topFunction()" id="myBtn" title="Go to top">
+<button id="myBtn" title="Go to top">
     <i class="fas fa-arrow-up fa-2x" style="color:white" aria-hidden="true"></i></button>
 <div class="card">
     <br/>
@@ -126,35 +126,7 @@
     <br/>
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">TITOL</h3>
     <div class="card-body">
-        <div class="col" id="filtres">
-            <div class="form-group row">
-                <div class="spinner-border text-warning"  style="position:absolute" id="spin" role="status" hidden class="col-1">
-                    <span  class="sr-only">Loading...</span>
-                </div>
-                <div class="col-2">
 
-                </div>
-                <div class="col-4">
-                    <div class="input-group">
-                        <input type="search" class="form-control" id="myInput" placeholder="Buscar ..." />
-                        <button type="button" class="btn btn-primary btn-sm" title="Buscar" onclick="searchFunction(1);" style="color:black;font-size:80%;margin-top:-1%">
-                            <i class="fas fa-search fa-2x"style="color:white;cursor:pointer" ></i></button >
-                    </div>
-                </div>
-                <div class="col-2">
-
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-warning btn-sm" id="crear" title="Recarregar" onClick="location.reload()" style="color:black;font-size:80%;margin-top:-1%">
-                        <i class="fas fa-sync fa-2x" style="color:white;cursor:pointer"></i></button >&nbsp;&nbsp;
-                    <button type="button" class="btn btn-success btn-sm" title="Nou Element" onClick="guardar()" style="color:black;font-size:80%;margin-top:-1%">
-                        <i class="fas fa-plus fa-2x" style="color:white;cursor:pointer" ></i></button >&nbsp;&nbsp;
-                    <button type="button" class="btn btn-info btn-sm" title="Descarregar" onclick="download();" style="color:black;font-size:80%;margin-top:-1%">
-                        <i class="fas fa-file-pdf fa-2x" style="color:white;cursor:pointer" ></i></button >
-                    <!-- TODO: Add new buttons here -->
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 </div>
