@@ -4,6 +4,7 @@
 <head>
     <title>TITLE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -93,14 +94,14 @@
         <br/>
         <h3 id="ordenes-span-style-color-009688-ddl-span-sobre-base-de-datos">Ordenes <span style="color:#009688">DDL</span> sobre base de datos</h3>
         <p>Para crear una base de datos se realiza con la orden <code>CREATE DATABASE</code> aunque <code>CREATE SCHEMA</code> es sinónima, es decir que hará lo mismo</p>
-        <pre><code><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> NOMBRE_SCHEMA
+        <pre class="prettyprint lang-sql"><code><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> NOMBRE_SCHEMA
 </code></pre><p>Con la orden <code>DROP [DATABASE | SCHEMA]</code> borramos una base de datos</p>
-        <pre><code><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">DATABASE</span> NOMBRE_SCHEMA
+        <pre class="prettyprint lang-sql"><code><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">DATABASE</span> NOMBRE_SCHEMA
 </code></pre>
         <br/>
         <br/>
         <h3 id="sintaxis-de-span-style-color-009688-create-table-span-crear-tabla-">Sintaxis de <span style="color:#009688">CREATE TABLE</span> (crear tabla)</h3>
-        <pre><code>CREATE <span class="hljs-keyword">TABLE</span> nombre_tabla <span class="hljs-comment">(</span>
+        <pre class="prettyprint lang-sql"><code>CREATE <span class="hljs-keyword">TABLE</span> nombre_tabla <span class="hljs-comment">(</span>
     nombre_columna tipocolumna [restricciones_columna],
     [nombre_columna tipocolumna [restricciones_columna], ]
     [restricciones_tabla]
@@ -123,8 +124,8 @@
         </ul>
         <br/>
         <br/>
-        <h3 id="ejemplo">Ejemplo</h3>
-        <pre><code class="lang-roomsql">    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> PROFESOR (
+        <h3>Ejemplo</h3>
+        <pre class="prettyprint lang-sql"><code class="lang-roomsql">    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> PROFESOR (
         <span class="hljs-keyword">ID</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,
         NOMBRE <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
         APELLIDO <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-literal">NULL</span>,
@@ -140,8 +141,8 @@
         </ul>
         <br/>
         <br/>
-        <h3 id="ejemplo">Ejemplo</h3>
-        <pre><code class="lang-roomsql">    create table usuario(
+        <h3>Ejemplo</h3>
+        <pre class="prettyprint lang-sql"><code class="lang-roomsql">    create table usuario(
         numero int auto_increment,
         documento char(<span class="hljs-number">8</span>),
         nombre varchar(<span class="hljs-number">30</span>),
@@ -155,7 +156,7 @@
         <br/>
         <br/>
         <h3 id="-span-style-color-6aa84f-constraints-span-"><span style="color:#6aa84f">CONSTRAINTS</span></h3>
-        <pre><code>CREATE <span class="hljs-keyword">TABLE</span> nombre_tabla <span class="hljs-comment">(</span>
+        <pre class="prettyprint lang-sql"><code>CREATE <span class="hljs-keyword">TABLE</span> nombre_tabla <span class="hljs-comment">(</span>
     nombre_columna tipocolumna [restricciones_columna],
     [nombre_columna tipocolumna [restricciones_columna], ]
     [restricciones_tabla]
@@ -176,7 +177,7 @@
         <br/>
         <br/>
         <h3 id="ejemplo">Ejemplo</h3>
-        <pre><code class="lang-roomsql">    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> PROFESOR (
+        <pre class="prettyprint lang-sql"><code class="lang-roomsql">    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> PROFESOR (
         <span class="hljs-keyword">ID</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
         NOMBRE <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>),
         APELLIDO <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>),
@@ -194,7 +195,7 @@
         <br/>
         <h2 id="-span-style-color-009688-actividad-1-span-"><span style="color:#009688">Actividad 1</span></h2>
         <p>Dadas las tablas, <span style="color:#4dd0e1">CLIENTES</span> y <span style="color:#4dd0e1">FACTURAS</span>, crea un script para cada una de ellas:</p>
-        <pre><code>CLIENTES
+        <pre class="prettyprint lang-sql"><code>CLIENTES
 CIF (<span class="hljs-name">PK</span>)
 Nombre (<span class="hljs-name">no</span> nulo)
 Direccion
@@ -202,7 +203,7 @@ Poblacion (<span class="hljs-name">default</span> ‘Barcelona’)
 Web
 Correo
 </code></pre><hr>
-        <pre><code>FACTURAS
+        <pre class="prettyprint lang-sql"><code>FACTURAS
 Idfactura (<span class="hljs-name">PK</span> - autoincremental empieza en <span class="hljs-number">100</span> y no nula)
 Fechafactura
 Total (<span class="hljs-name">n</span>úmero con dos decimales)
@@ -214,7 +215,7 @@ CIF (<span class="hljs-name">FK</span> CLIENTE)
         <br/><details>
         <summary><span style="color:#6aa84f;font-size:150%">Solución</span></summary>
 
-        <pre>
+        <pre class="prettyprint lang-sql">
 CREATE TABLE CLIENTES (
     CIF char(9) primary key auto_increment,
     nombre varchar(30) not null,
@@ -225,7 +226,7 @@ CREATE TABLE CLIENTES (
 );
 </pre>
         <hr>
-        <pre>
+        <pre class="prettyprint lang-sql">
 CREATE TABLE facturas (
     Idfactura int auto_increment primary key not null,
     Fechafactura date,
