@@ -22,29 +22,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 
-    <style>
-            code {
-              font-family: Consolas,"courier new";
-              color: crimson;
-              background-color: #f1f1f1;
-              padding: 2px;
-              font-size: 105%;
-            }
-            pre {
-                display: block;
-                padding: 9.5px;
-                margin: 0 0 10px;
-                font-size: 13px;
-                line-height: 1.42857143;
-                word-break: break-all;
-                word-wrap: break-word;
-                color: #333;
-                background-color: #f5f5f5;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-
-    </style>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -53,7 +31,7 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="UF1.html">UF1</a>
@@ -80,20 +58,20 @@
         <!-- HERE COMES THE CODE -->
 
 
-        <h1 id="-span-style-color-009688-m02-uf2-span-"><span style="color:#009688">M02 UF2</span></h1>
-        <h2 id="-span-style-color-4dd0e1-lenguaje-sql-span-"><span style="color:#4dd0e1">LENGUAJE SQL</span></h2>
+        <h1><span class="primario">M02 UF2</span></h1>
+        <h2><span class="secundario">LENGUAJE SQL</span></h2>
         <p>Las sentencias de bases de datos se pueden agrupar en:</p>
         <ul>
-            <li><p><span style="color:#009688">DDL</span> (<span style="color:#4dd0e1">Data Definition Language</span>): Definición de la estructura de almacenamiento de datos. Create, drop, alter…</p>
+            <li><p><span class="primario">DDL</span> (<span class="secundario">Data Definition Language</span>): Definición de la estructura de almacenamiento de datos. Create, drop, alter…</p>
             </li>
-            <li><p><span style="color:#009688">DML</span> (<span style="color:#4dd0e1">Data Manipulation Language</span>): Consulta y modificación de datos. Select, Insert, update, delete…</p>
+            <li><p><span class="primario">DML</span> (<span class="secundario">Data Manipulation Language</span>): Consulta y modificación de datos. Select, Insert, update, delete…</p>
             </li>
-            <li><p><span style="color:#009688">DCL</span> (<span style="color:#4dd0e1">Data Control Language</span>): administra el acceso a los datos. Grant, revoke…</p>
+            <li><p><span class="primario">DCL</span> (<span class="secundario">Data Control Language</span>): administra el acceso a los datos. Grant, revoke…</p>
             </li>
         </ul>
         <br/>
         <br/>
-        <h3 id="ordenes-span-style-color-009688-ddl-span-sobre-base-de-datos">Ordenes <span style="color:#009688">DDL</span> sobre base de datos</h3>
+        <h3>Ordenes <span class="primario">DDL</span> sobre base de datos</h3>
         <p>Para crear una base de datos se realiza con la orden <code>CREATE DATABASE</code> aunque <code>CREATE SCHEMA</code> es sinónima, es decir que hará lo mismo</p>
         <pre class="prettyprint lang-sql"><code><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> NOMBRE_SCHEMA
 </code></pre><p>Con la orden <code>DROP [DATABASE | SCHEMA]</code> borramos una base de datos</p>
@@ -101,27 +79,27 @@
 </code></pre>
         <br/>
         <br/>
-        <h3 id="sintaxis-de-span-style-color-009688-create-table-span-crear-tabla-">Sintaxis de <span style="color:#009688">CREATE TABLE</span> (crear tabla)</h3>
+        <h3>Sintaxis de <span class="primario">CREATE TABLE</span> (crear tabla)</h3>
         <pre class="prettyprint lang-sql"><code>CREATE <span class="hljs-keyword">TABLE</span> nombre_tabla <span class="hljs-comment">(</span>
     nombre_columna tipocolumna [restricciones_columna],
     [nombre_columna tipocolumna [restricciones_columna], ]
     [restricciones_tabla]
 );
-</code></pre><p>Donde las <span style="color:#4dd0e1">restricciones_columna</span> pueden ser:</p>
+</code></pre><p>Donde las <span class="secundario">restricciones_columna</span> pueden ser:</p>
         <ul>
-            <li><span style="color:#009688">PRIMARY KEY</span> &#8594 Especifica que esta columna es clave primaria.
+            <li><span class="primario">PRIMARY KEY</span> &#8594 Especifica que esta columna es clave primaria.
                 NOTA: Una clave primaria puede contener hasta 16 columnas.<ul>
                     <li>No puede haber más de una clave primaria por tabla.</li>
                     <li>Las columnas que la definen deben ser NOT NULL. (Se hace por defecto).</li>
                 </ul>
             </li>
-            <li><span style="color:#009688">FOREING KEY</span> &#8594 Permite establecer una clave en esta tabla con la clave primaria de otra.</li>
-            <li><span style="color:#009688">NOT NULL</span> &#8594 Especifica que la columna debe recibir un valor en la creación o la modificación. La propiedad not null no se admite en el ALTER TABLE.</li>
-            <li><span style="color:#009688">NULL</span> &#8594 Especifica que la columna puede tomar valores null.</li>
-            <li><span style="color:#009688">DEFAULT</span> &#8594 Fuerza un valor para este campo si no existe.</li>
-            <li><span style="color:#009688">AUTO_INCREMENT</span> &#8594 Propiedad aplicada únicamente a columna numérica entera y permite que el sistema genera automáticamente los números de manera incremental.</li>
-            <li><span style="color:#009688">UNIQUE</span> &#8594 Permite asignar un valor único a un campo, por lo que todos los valores son diferentes en esa columna. Puede haber varias por tabla.</li>
-            <li><span style="color:#009688">CHECK</span> &#8594 Especifica una comprobación en el valor de esta columna. </li>
+            <li><span class="primario">FOREING KEY</span> &#8594 Permite establecer una clave en esta tabla con la clave primaria de otra.</li>
+            <li><span class="primario">NOT NULL</span> &#8594 Especifica que la columna debe recibir un valor en la creación o la modificación. La propiedad not null no se admite en el ALTER TABLE.</li>
+            <li><span class="primario">NULL</span> &#8594 Especifica que la columna puede tomar valores null.</li>
+            <li><span class="primario">DEFAULT</span> &#8594 Fuerza un valor para este campo si no existe.</li>
+            <li><span class="primario">AUTO_INCREMENT</span> &#8594 Propiedad aplicada únicamente a columna numérica entera y permite que el sistema genera automáticamente los números de manera incremental.</li>
+            <li><span class="primario">UNIQUE</span> &#8594 Permite asignar un valor único a un campo, por lo que todos los valores son diferentes en esa columna. Puede haber varias por tabla.</li>
+            <li><span class="primario">CHECK</span> &#8594 Especifica una comprobación en el valor de esta columna. </li>
         </ul>
         <br/>
         <br/>
@@ -137,8 +115,8 @@
     ) AUTO_INCREMENT = <span class="hljs-number">1000</span>;
 </code></pre>
         <ul>
-            <li>Si no especifico el <span style="color:#6aa84f">AUTO_INCREMENT</span> empieza en 1.</li>
-            <li>Un único <span style="color:#6aa84f">AUTO_INCREMENT</span> por tabla y siempre en la <span style="color:#4dd0e1">Primary Key</span>.</li>
+            <li>Si no especifico el <span class="otros">AUTO_INCREMENT</span> empieza en 1.</li>
+            <li>Un único <span class="otros">AUTO_INCREMENT</span> por tabla y siempre en la <span class="secundario">Primary Key</span>.</li>
         </ul>
         <br/>
         <br/>
@@ -152,32 +130,32 @@
     )
 </code></pre>
         <ul>
-            <li>Forma exclusiva de MySql para crear la <span style="color:#4dd0e1">Primary Key</span>.</li>
+            <li>Forma exclusiva de MySql para crear la <span class="secundario">Primary Key</span>.</li>
         </ul>
         <br/>
         <br/>
-        <h3 id="-span-style-color-6aa84f-constraints-span-"><span style="color:#6aa84f">CONSTRAINTS</span></h3>
+        <h3 class="primario">CONSTRAINTS</h3>
         <pre class="prettyprint lang-sql"><code>CREATE <span class="hljs-keyword">TABLE</span> nombre_tabla <span class="hljs-comment">(</span>
     nombre_columna tipocolumna [restricciones_columna],
     [nombre_columna tipocolumna [restricciones_columna], ]
     [restricciones_tabla]
 );
-</code></pre><p>Podemos, del mismo modo, crear restricciones <span style="color:#6aa84f">(CONSTRAINTS)</span> al final de la especificación de tablas (<span style="color:#4dd0e1">restricciones_tabla</span>) con los comandos:</p>
+</code></pre><p>Podemos, del mismo modo, crear restricciones <span class="otros">(CONSTRAINTS)</span> al final de la especificación de tablas (<span class="secundario">restricciones_tabla</span>) con los comandos:</p>
         <ul>
-            <li><span style="color:#6aa84f">CONSTRAINT</span> nombrerestriccion <span style="color:#009688">DEFAULT</span> valor FOR nombrecolumna</li>
-            <li><span style="color:#6aa84f">CONSTRAINT</span> nombrerestriccion <span style="color:#009688">PRIMARY KEY</span> (nombrecolumna1,....)<ul>
+            <li><span class="otros">CONSTRAINT</span> nombrerestriccion <span class="primario">DEFAULT</span> valor FOR nombrecolumna</li>
+            <li><span class="otros">CONSTRAINT</span> nombrerestriccion <span class="primario">PRIMARY KEY</span> (nombrecolumna1,....)<ul>
                 <li>NOTA: Es la única manera de hacer una clave primaria compuesta.</li>
             </ul>
             </li>
-            <li><span style="color:#6aa84f">CONSTRAINT</span> nombrerestriccion <span style="color:#009688">UNIQUE</span> (nombrecolumna1, ...)</li>
-            <li><span style="color:#6aa84f">CONSTRAINT</span> FK_ nombrerest <span style="color:#009688">FOREIGN KEY</span> (nombrecol) <span style="color:#009688">REFERENCES</span> NombreTabla (columnaId)<ul>
+            <li><span class="otros">CONSTRAINT</span> nombrerestriccion <span class="primario">UNIQUE</span> (nombrecolumna1, ...)</li>
+            <li><span class="otros">CONSTRAINT</span> FK_ nombrerest <span class="primario">FOREIGN KEY</span> (nombrecol) <span class="primario">REFERENCES</span> NombreTabla (columnaId)<ul>
                 <li>NOTA: Es la única manera de hacer una clave foranea.</li>
             </ul>
             </li>
         </ul>
         <br/>
         <br/>
-        <h3 id="ejemplo">Ejemplo</h3>
+        <h3>Ejemplo</h3>
         <pre class="prettyprint lang-sql"><code class="lang-roomsql">    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> PROFESOR (
         <span class="hljs-keyword">ID</span> <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
         NOMBRE <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">100</span>),
@@ -194,8 +172,8 @@
 </code></pre>
         <br/>
         <br/>
-        <h2 id="-span-style-color-009688-actividad-1-span-"><span style="color:#009688">Actividad 1</span></h2>
-        <p>Dadas las tablas, <span style="color:#4dd0e1">CLIENTES</span> y <span style="color:#4dd0e1">FACTURAS</span>, crea un script para cada una de ellas:</p>
+        <h2><span class="primario">Actividad 1</span></h2>
+        <p>Dadas las tablas, <span class="secundario">CLIENTES</span> y <span class="secundario">FACTURAS</span>, crea un script para cada una de ellas:</p>
         <pre class="prettyprint lang-sql"><code>CLIENTES
 CIF (<span class="hljs-name">PK</span>)
 Nombre (<span class="hljs-name">no</span> nulo)
@@ -214,7 +192,7 @@ CIF (<span class="hljs-name">FK</span> CLIENTE)
 </code></pre>
         <br/>
         <br/><details>
-        <summary><span style="color:#6aa84f;font-size:150%">Solución</span></summary>
+        <summary><span class="secundario solucion">Solución</span></summary>
 
         <pre class="prettyprint lang-sql">
 CREATE TABLE CLIENTES (
@@ -241,17 +219,136 @@ CREATE TABLE facturas (
 
         <br/>
         <br/>
-        <h2 id="-span-style-color-009688-actividad-2-span-"><span style="color:#009688">Actividad 2</span></h2>
-        <p>Ahora ejecuta el script en la base de datos.</p>
-        <hr>
+        <h3 class="primario">Actividad 2</h3>
+        Crea el script de base de datos para el diagrama relacional siguiente:<br/>
+        <img src="../images/Ejercicio clase I.jpg" class="img-fluid" alt="Responsive image">
         <br/>
         <br/>
+        <details>
+        <summary><span class="secundario solucion">Solución</span></summary>
+
+        <pre class="prettyprint lang-sql">
+CREATE TABLE CLIENTES (
+    ID_CLIENTE INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    NOMBRE VARCHAR(50),
+    DIRECCION VARCHAR(100),
+    TELEFONO CHAR(9)
+);
+
+CREATE TABLE FACTURAS (
+    ID_FACTURA INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    FECHA DATE,
+    ID_CLIENTE INT NOT NULL,
+    CONSTRAINT FK_cliente FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTES (ID_CLIENTE)
+);
+
+CREATE TABLE CATEGORIAS (
+    ID_CATEGORIA INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    DESCRIPCION VARCHAR(100)
+);
+
+CREATE TABLE PROVEEDORES (
+    ID_PROVEEDOR INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    NOMBRE VARCHAR(50),
+    DIRECCION VARCHAR(100),
+    TELEFONO CHAR(9)
+);
+
+CREATE TABLE PRODUCTOS (
+    ID_PRODUCTO INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    DESCRIPCION VARCHAR(100),
+    PRECIO DECIMAL(10,2),
+    ID_CATEGORIA INT NOT NULL,
+    ID_PROVEEDOR INT NOT NULL,
+    CONSTRAINT fk_categoria FOREIGN KEY (ID_CATEGORIA) REFERENCES CATEGORIAS (ID_CATEGORIA),
+    CONSTRAINT fk_proveedor FOREIGN KEY (ID_PROVEEDOR) REFERENCES PROVEEDORES (ID_PROVEEDOR)
+);
+
+CREATE TABLE VENTAS (
+    ID_VENTA INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ID_FACTURA INT NOT NULL,
+    ID_PRODUCTO INT NOT NULL,
+    CANTIDAD INT NOT NULL,
+    CONSTRAINT FK_factura FOREIGN KEY (ID_FACTURA) REFERENCES FACTURAS (ID_FACTURA),
+    CONSTRAINT FK_producto FOREIGN KEY (ID_PRODUCTO) REFERENCES PRODUCTOS (ID_PRODUCTO)
+);
+        </pre>
+            El orden del script es importante, ya que no puedo crear una tabla en base de datos que tiene una clave foránea
+            si no se ha creado primero la tabla de donde procede esa clave foránea.<br/>
+        </details>
+
         <br/>
         <br/>
+        <h3 class="primario">Actividad 3</h3>
+        Ahora crea el script de base de datos del siguiente modelo relacional en el orden correcto.<br/>
+        <img src="../images/Ejercicio clase II.png" class="img-fluid" alt="Responsive image">
+        <br/>
+        <br/>
+        <details>
+            <summary><span class="secundario solucion">Solución</span></summary>
+
+            <pre class="prettyprint lang-sql">
+CREATE TABLE POLIZA (
+    NUM_POLIZA INT PRIMARY KEY NOT NULL,
+    PRECIO DECIMAL(10,2),
+    TIPO VARCHAR(10),
+    FECHA_VENCIMIENTO DATE,
+    FECHA_CONTRATACION DATE
+);
+
+CREATE TABLE CLIENTE (
+    DNI CHAR(9) PRIMARY KEY NOT NULL,
+    NOMBRE VARCHAR(50),
+    DIRECCION VARCHAR(100),
+    TELEFONO CHAR(9),
+    NUM_POLIZA INT,
+    CONSTRAINT FK_poliza FOREIGN KEY (NUM_POLIZA) REFERENCES POLIZA (NUM_POLIZA)
+);
+
+CREATE TABLE SUCURSAL (
+    NUM_SUCURSAL INT PRIMARY KEY NOT NULL,
+    DIRECCION VARCHAR(100),
+    NUM_POLIZA INT,
+    CONSTRAINT FK_poliza_sucursal FOREIGN KEY (NUM_POLIZA) REFERENCES POLIZA (NUM_POLIZA)
+);
+
+CREATE TABLE PERSONAL (
+    DNI CHAR(9) PRIMARY KEY NOT NULL,
+    NOMBRE VARCHAR(50),
+    APELLIDO1 VARCHAR(50),
+    APELLIDO2 VARCHAR(50),
+    TELEFONO CHAR(9),
+    NUM_CUENTA_CORR CHAR(13),
+    NUM_SUCURSAL INT NOT NULL,
+    CONSTRAINT FK_suc_personal FOREIGN KEY (NUM_SUCURSAL) REFERENCES SUCURSAL (NUM_SUCURSAL)
+);
 
 
+CREATE TABLE PRINCIPAL (
+    NUM_SUCURSAL INT AUTO_INCREMENT,
+    DNI CHAR(9),
+    CONSTRAINT PK_ppal PRIMARY KEY (NUM_SUCURSAL),
+    CONSTRAINT FK_sucursal_ppal FOREIGN KEY (NUM_SUCURSAL) REFERENCES SUCURSAL (NUM_SUCURSAL),
+    CONSTRAINT FK_DNI_ppal FOREIGN KEY (DNI) REFERENCES PERSONAL (DNI)
+);
+
+CREATE TABLE DEPARTAMENTO (
+    NUM_SUCURSAL INT AUTO_INCREMENT,
+    DNI CHAR(9),
+    NUM_SUC_PPAL INT,
+    CONSTRAINT PK_dep PRIMARY KEY (NUM_SUCURSAL),
+    CONSTRAINT FK_sucursal_dep FOREIGN KEY (NUM_SUCURSAL) REFERENCES SUCURSAL (NUM_SUCURSAL),
+    CONSTRAINT FK_suc_dep_ppal FOREIGN KEY (NUM_SUC_PPAL) REFERENCES PRINCIPAL (NUM_SUCURSAL),
+    CONSTRAINT FK_DNI_dep FOREIGN KEY (DNI) REFERENCES PERSONAL (DNI)
+);
+        </pre>
+        </details>
 
         <!-- HERE ENDS THE CODE -->
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 
     </div>
 </div>
