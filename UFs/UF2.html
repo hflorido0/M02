@@ -196,7 +196,7 @@ CIF (<span class="hljs-name">FK</span> CLIENTE)
 
         <pre class="prettyprint lang-sql">
 CREATE TABLE CLIENTES (
-    CIF char(9) primary key auto_increment,
+    CIF int primary key auto_increment,
     nombre varchar(30) not null,
     direccion varchar(100),
     poblacion varchar(100) default &#39;Barcelona&#39;,
@@ -212,7 +212,7 @@ CREATE TABLE facturas (
     total decimal(10,2),
     iva decimal(10,2),
     descuento decimal(10,2) check(&gt;20) null,
-    CIF char(9) ,
+    CIF int,
     constraint fk_clientes_facturas foreign key(CIF) references clientes(CIF)
 ) auto_increment = 100;</pre>
     </details>
