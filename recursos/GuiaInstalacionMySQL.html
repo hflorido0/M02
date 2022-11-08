@@ -77,7 +77,7 @@ sudo ./jetbrains-toolbox</pre>
 
         <p>instalamos MySQL Server (una de las dos según si es MySQL o MariaDB):</p>
         <pre>
-sudo apt install mysql-server (MySQL)<br/>
+sudo apt install mysql-server (MySQL)
 sudo apt install mariadb-server (MariaDB)</pre>
 
         <p>iniciamos MySQL Server (una de las dos según si es MySQL o MariaDB):</p>
@@ -87,8 +87,8 @@ sudo systemctl start mariadb.service (MariaDB)</pre>
 
         <p>este paso sería solamente para MariaDB. Cuando nos pida un password añadiremos daremos a enter sin introducir nada.<br/>
         A continuación nos dirá si queremos poner un password a root y diremos que si <code>Y</code> y introduciremos el password <code>root</code></p>
-        <pre>sudo systemctl status mariadb</pre>
-
+        <pre>sudo mysql_secure_installation</pre>
+        <p>el resto de pasos simplemente le damos a todo <code>n</code></p><br/>
         <p>entramos a la consola de MySQL (una de las dos según si es MySQL o MariaDB):</p>
         <pre>
 sudo mysql (MySQL)
