@@ -211,9 +211,9 @@ CREATE TABLE facturas (
     Fechafactura date,
     total decimal(10,2),
     iva decimal(10,2),
-    descuento decimal(10,2) check(&gt;20) null,
+    descuento decimal(10,2) check(descuento&gt;20) null,
     CIF int,
-    constraint fk_clientes_facturas foreign key(CIF) references clientes(CIF)
+    constraint fk_clientes_facturas foreign key(CIF) references CLIENTES(CIF)
 ) auto_increment = 100;</pre>
     </details>
 
