@@ -75,21 +75,26 @@ sudo ./jetbrains-toolbox</pre>
         <h3 class="primario">INSTALACIÓN DE MYSQL SERVER</h3>
         <pre>Sudo apt update</pre>
 
-        <p>instalamos MySQL Server:</p>
+        <p>instalamos MySQL Server (una de las dos según si es MySQL o MariaDB):</p>
         <pre>
 sudo apt install mysql-server (MySQL)<br/>
-sudo apt install default-mysql-server (MariaDB)</pre>
+sudo apt install mariadb-server (MariaDB)</pre>
 
-        <p>iniciamos MySQL Server:</p>
+        <p>iniciamos MySQL Server (una de las dos según si es MySQL o MariaDB):</p>
         <pre>
-sudo systemctl start mysql.service</pre>
+sudo systemctl start mysql.service (MySQL)
+sudo systemctl start mariadb.service (MariaDB)</pre>
 
+        <p>este paso sería solamente para MariaDB. Cuando nos pida un password añadiremos daremos a enter sin introducir nada.<br/>
+        A continuación nos dirá si queremos poner un password a root y diremos que si <code>Y</code> y introduciremos el password <code>root</code></p>
+        <pre>sudo systemctl status mariadb</pre>
 
-        <p>entramos a la consola de MySQL:</p>
+        <p>entramos a la consola de MySQL (una de las dos según si es MySQL o MariaDB):</p>
         <pre>
-sudo mysql</pre>
+sudo mysql (MySQL)
+sudo mariadb (MariaDB)</pre>
 
-        <p>Modificamos el usuario root:</p>
+        <p>Este paso es solamente para MySQL. Modificamos el usuario root:</p>
         <pre>
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ‘root’;<br/>
 exit</pre>
